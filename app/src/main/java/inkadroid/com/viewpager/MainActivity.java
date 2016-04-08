@@ -1,5 +1,6 @@
 package inkadroid.com.viewpager;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.preference.PreferenceManager;
@@ -74,7 +75,8 @@ public class MainActivity extends Activity  {
         ir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplication(),"EN CONSTRUCCION",Toast.LENGTH_LONG).show();
+               Intent intento=new Intent(getApplicationContext(),Principal.class);
+                startActivity(intento);
             }
         });
 
