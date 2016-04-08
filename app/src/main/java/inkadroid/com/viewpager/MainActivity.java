@@ -71,7 +71,7 @@ public class MainActivity extends Activity  {
         imageView = (ImageView)findViewById(R.id.ImagenPrincipal);
         //BOTON REDONDEADO DE LA PAGINA PRINCIPAL
         ir = (ImageButton)findViewById(R.id.ir);
-        //AL PULSAR EL BOTON REDONDEADO DE LA PAGINA PRINCIPAL
+        //AL PULSAR EL BOTN REDONDEADO DE LA PAGINA PRINCIPAL
         ir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
