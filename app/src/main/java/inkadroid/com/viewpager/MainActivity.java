@@ -25,10 +25,7 @@ public class MainActivity extends Activity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        /////////////google analytic///////////////////////////////////////////////////
-        Tracker t = ((inkadroid.com.viewpager.ViewPager) getApplication()).getTracker();
-        t.setScreenName("Pagina - Principal");
-        t.send(new HitBuilders.AppViewBuilder().build());
+
         /////////////google analytic///////////////////////////////////////////////////
 
         ////////////detectar la resolucion de densidad de la pantalla//////////////////
@@ -86,16 +83,7 @@ public class MainActivity extends Activity  {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         Boolean first_time = sp.getBoolean("first time", true);
 
-        if (!first_time) {
-            /////////////google analytic///////////////////////////////////////////////////
-            t.setScreenName("Pagina - Principal");
-            t.send(new HitBuilders.AppViewBuilder().build());
-            /////////////google analytic///////////////////////////////////////////////////
-            guide_pager.setCurrentItem(5);
 
-        }else{
-            sp.edit().putBoolean("first time",false).apply();
-        }
     }
 
     //obteniendo la resolucion de la pantalla

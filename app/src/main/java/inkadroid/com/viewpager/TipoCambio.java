@@ -1,28 +1,29 @@
 package inkadroid.com.viewpager;
 
-        import android.app.ProgressDialog;
-        import android.os.Bundle;
-        import android.support.annotation.Nullable;
-        import android.support.v4.app.Fragment;
-        import android.util.Log;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import com.android.volley.Request;
-        import com.android.volley.Response;
-        import com.android.volley.VolleyError;
-        import com.android.volley.toolbox.StringRequest;
-        import com.github.mikephil.charting.charts.LineChart;
-        import com.github.mikephil.charting.components.YAxis;
-        import com.github.mikephil.charting.data.Entry;
-        import com.github.mikephil.charting.data.LineData;
-        import com.github.mikephil.charting.data.LineDataSet;
-        import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-        import com.google.gson.Gson;
-        import com.google.gson.reflect.TypeToken;
-        import java.lang.reflect.Type;
-        import java.util.ArrayList;
-        import java.util.List;
+
+import android.app.ProgressDialog;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 public class TipoCambio extends Fragment {
     //barra de progreso
     private ProgressDialog dialog;
@@ -49,7 +50,7 @@ public class TipoCambio extends Fragment {
         dialog = ProgressDialog.show(getContext(), getResources().getString(R.string.load_title),
                 getResources().getString(R.string.load), true, false);
         ViewPager.getInstance().add(new StringRequest(Request.Method.GET,
-                "http://www.inkadroid.com/usil2016/robot/grupo/robot.php",
+                "http://www.inkadroid.com/usil2016/robot/1/boot.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -68,7 +69,26 @@ public class TipoCambio extends Fragment {
         }));
     }
     private void setChart(List<ExchangeType> data) {
-
-
+        ArrayList<Entry> valsCompra=new ArrayList<>();
+        ArrayList<Entry> valsVenta=new ArrayList<>();
+        ArrayList<String> valsX=new ArrayList<>();
+        for(int i=0;i<data.size();i++){
+            valsCompra.add(new Entry(data.get(i).getCompra(),i));
+            valsVenta.add(new Entry(data.get(i).getVenta(),i));
+            valsX.add(String.valueOf(data.get(i).getDia()));
+        }
+        LineDataSet dataSetCompra=new LineDataSet(valsCompra,"compra");
+        dataSetCompra.setAxisDependency(YAxis.AxisDependency.LEFT);
+        dataSetCompra.setColor(getContext().getResources().getColor(R.color.colorAccent));
+        LineDataSet dataSetVenta=new LineDataSet(valsVenta,"venta");
+        dataSetVenta.setAxisDependency(YAxis.AxisDependency.LEFT);
+        dataSetVenta.setColor(getContext().getResources().getColor(R.color.colorPrimary));
+        ArrayList<LineDataSet> dataSets=new ArrayList<>();
+        dataSets.add(dataSetCompra);
+        dataSets.add(dataSetVenta);
+        LineData lineData;
+        lineData = new LineData(valsX, (ILineDataSet) dataSets);
+        chart.setData(lineData);
+        chart.invalidate();
     }
 }

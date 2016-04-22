@@ -2,4 +2,9 @@
     <string name="app_name">ViewPager</string>
     <string name="navigation_drawer_open">Abierto</string>
     <string name="navigation_drawer_close">Cerrado</string>
+    <string name="load_title">Cargando</string>
+    <string name="load">Espere un momento por favor...</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
