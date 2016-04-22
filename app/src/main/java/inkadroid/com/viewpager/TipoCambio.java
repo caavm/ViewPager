@@ -69,26 +69,29 @@ public class TipoCambio extends Fragment {
         }));
     }
     private void setChart(List<ExchangeType> data) {
-        ArrayList<Entry> valsCompra=new ArrayList<>();
-        ArrayList<Entry> valsVenta=new ArrayList<>();
-        ArrayList<String> valsX=new ArrayList<>();
-        for(int i=0;i<data.size();i++){
-            valsCompra.add(new Entry(data.get(i).getCompra(),i));
-            valsVenta.add(new Entry(data.get(i).getVenta(),i));
+        ArrayList<Entry> valsCompra = new ArrayList<>();
+        ArrayList<Entry> valsVenta = new ArrayList<>();
+        ArrayList<String> valsX = new ArrayList<>();
+        for (int i = 0; i < data.size(); i++) {
+            valsCompra.add(new Entry(data.get(i).getCompra(), i));
+            valsVenta.add(new Entry(data.get(i).getVenta(), i));
             valsX.add(String.valueOf(data.get(i).getDia()));
         }
-        LineDataSet dataSetCompra=new LineDataSet(valsCompra,"compra");
+        LineDataSet dataSetCompra = new LineDataSet(valsCompra, "Compra");
         dataSetCompra.setAxisDependency(YAxis.AxisDependency.LEFT);
-        dataSetCompra.setColor(getContext().getResources().getColor(R.color.colorAccent));
-        LineDataSet dataSetVenta=new LineDataSet(valsVenta,"venta");
+
+        dataSetCompra.setColor(getContext().getResources().getColor(R.color.colorPrimary));
+        LineDataSet dataSetVenta = new LineDataSet(valsVenta, "Venta");
+
+        dataSetVenta.setColor(getContext().getResources().getColor(R.color.colorAccent));
         dataSetVenta.setAxisDependency(YAxis.AxisDependency.LEFT);
-        dataSetVenta.setColor(getContext().getResources().getColor(R.color.colorPrimary));
-        ArrayList<LineDataSet> dataSets=new ArrayList<>();
+        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
         dataSets.add(dataSetCompra);
         dataSets.add(dataSetVenta);
-        LineData lineData;
-        lineData = new LineData(valsX, (ILineDataSet) dataSets);
+
+        LineData lineData = new LineData(valsX,dataSets);
         chart.setData(lineData);
         chart.invalidate();
+
     }
 }
