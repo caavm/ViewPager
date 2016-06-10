@@ -79,12 +79,12 @@ public class TipoCambio extends Fragment {
         }
         LineDataSet dataSetCompra = new LineDataSet(valsCompra, "Compra");
         dataSetCompra.setAxisDependency(YAxis.AxisDependency.LEFT);
-
         dataSetCompra.setColor(getContext().getResources().getColor(R.color.colorPrimary));
-        LineDataSet dataSetVenta = new LineDataSet(valsVenta, "Venta");
 
+        LineDataSet dataSetVenta = new LineDataSet(valsVenta, "Venta");
         dataSetVenta.setColor(getContext().getResources().getColor(R.color.colorAccent));
         dataSetVenta.setAxisDependency(YAxis.AxisDependency.LEFT);
+
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
         dataSets.add(dataSetCompra);
         dataSets.add(dataSetVenta);

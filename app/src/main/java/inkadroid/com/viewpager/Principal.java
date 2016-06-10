@@ -23,6 +23,7 @@ public class Principal extends AppCompatActivity implements NavigationView.OnNav
     private static final List<Fragment> fragments;
     static{
         fragments=new ArrayList<>();
+        fragments.add(new Noticias());
         fragments.add(new TipoCambio());
     }
 
